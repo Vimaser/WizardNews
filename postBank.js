@@ -14,3 +14,22 @@ const data = [
     { id: 13, upvotes: 21, title: "Varius Magna: Turpis, Ac Tempus Dui Quis", content: "Cras cursus justo nec tortor sodales, tincidunt posuere massa pulvinar. Quisque neque ex, venenatis eget ante nec, volutpat ultrices elit. Pellentesque varius magna turpis, ac tempus dui convallis quis. Quisque porttitor semper purus quis scelerisque. Donec consectetur ullamcorper risus, nec consectetur ligula laoreet sit amet. Morbi non eros quam. In.", name: "Grikius", date: new Date(Date.now() - 60000) },
     { id: 14, upvotes: 10, title: "Dignissim Mauris Ac Dapibus", content: "Phasellus dignissim mauris ac dapibus aliquet. Pellentesque congue nibh rutrum, fringilla arcu eu, dignissim est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam non ligula eleifend, interdum erat a, ornare nulla. Nunc in aliquam ex, non maximus ipsum. Praesent varius metus vitae nibh rutrum.", name: "Avile", date: new Date() }
   ];
+
+const list = () => {
+  return [...data] // Immutability: Returning a copy of the array so the original data is safe. 
+};
+
+const find = (id) => {
+  const post = data.find(post => post.id === Number(id));
+  return {...post}; // data is copied before returning so original info is safe. Cool beans!
+};
+
+module.exports = { list: list, find: find };
+
+/* In the list func we're returning a copy of the data array. And again in the find func.
+we copy the newly created post before returning. By only returning copies of the data from our
+list and find funcs, we are ensuring that our data is immutable, meaning it cannot be mutated or changed.
+
+only exporting the funcs that provide the data and not the data itself we are esentially creating
+a small API (application programming interface) to control the ways in which the res of the app is allowed to interact
+with our data*/
